@@ -571,11 +571,13 @@ void cputs(const unsigned char* s)
 void cputsxy(unsigned char x, unsigned char y, const unsigned char* s)
 {
     const unsigned char len = (unsigned char)strlen((const char*)s);
-    const unsigned int offset = (y * (unsigned int)g_curScreenW) + x;
-    lcopy((unsigned long)s, SCREEN_RAM_BASE + offset, len);
-    lfill(COLOR_RAM_BASE + offset, g_curTextColor, len);
-    g_curY = y + ((x + len) / g_curScreenW);
-    g_curX = (x + len) % g_curScreenW;
+    if (len > 0) {
+        const unsigned int offset = (y * (unsigned int)g_curScreenW) + x;
+        lcopy((unsigned long)s, SCREEN_RAM_BASE + offset, len);
+        lfill(COLOR_RAM_BASE + offset, g_curTextColor, len);
+        g_curY = y + ((x + len) / g_curScreenW);
+        g_curX = (x + len) % g_curScreenW;
+    }
 }
 
 void cputcxy(unsigned char x, unsigned char y, unsigned char c)
@@ -590,11 +592,13 @@ void cputcxy(unsigned char x, unsigned char y, unsigned char c)
 void cputncxy(
     unsigned char x, unsigned char y, unsigned char count, unsigned char c)
 {
-    const unsigned int offset = (y * (unsigned int)g_curScreenW) + x;
-    lfill(SCREEN_RAM_BASE + offset, c, count);
-    lfill(COLOR_RAM_BASE + offset, g_curTextColor, count);
-    g_curY = y + ((x + count) / g_curScreenW);
-    g_curX = (x + count) % g_curScreenW;
+    if (count > 0) {
+        const unsigned int offset = (y * (unsigned int)g_curScreenW) + x;
+        lfill(SCREEN_RAM_BASE + offset, c, count);
+        lfill(COLOR_RAM_BASE + offset, g_curTextColor, count);
+        g_curY = y + ((x + count) / g_curScreenW);
+        g_curX = (x + count) % g_curScreenW;
+    }
 }
 
 void fillrect(const RECT* rc, unsigned char ch, unsigned char col)

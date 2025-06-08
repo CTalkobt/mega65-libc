@@ -946,7 +946,6 @@ void cputcxy(unsigned char x, unsigned char y, unsigned char c);
  * @param y The Y coordinate where character will be printed
  * @param count The number of characters to output. Must be larger than zero.
  * @param c The screen code of the characters to print
- * @warning Undefined behavior if `count` is zero.
  */
 void cputncxy(
     unsigned char x, unsigned char y, unsigned char count, unsigned char c);
