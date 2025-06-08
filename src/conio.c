@@ -575,9 +575,9 @@ void cputsxy(unsigned char x, unsigned char y, const unsigned char* s)
         const unsigned int offset = (y * (unsigned int)g_curScreenW) + x;
         lcopy((unsigned long)s, SCREEN_RAM_BASE + offset, len);
         lfill(COLOR_RAM_BASE + offset, g_curTextColor, len);
-        g_curY = y + ((x + len) / g_curScreenW);
-        g_curX = (x + len) % g_curScreenW;
     }
+    g_curY = y + ((x + len) / g_curScreenW);
+    g_curX = (x + len) % g_curScreenW;
 }
 
 void cputcxy(unsigned char x, unsigned char y, unsigned char c)
