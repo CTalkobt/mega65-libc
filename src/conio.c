@@ -596,9 +596,9 @@ void cputncxy(
         const unsigned int offset = (y * (unsigned int)g_curScreenW) + x;
         lfill(SCREEN_RAM_BASE + offset, c, count);
         lfill(COLOR_RAM_BASE + offset, g_curTextColor, count);
-        g_curY = y + ((x + count) / g_curScreenW);
-        g_curX = (x + count) % g_curScreenW;
     }
+    g_curY = y + ((x + count) / g_curScreenW);
+    g_curX = (x + count) % g_curScreenW;
 }
 
 void fillrect(const RECT* rc, unsigned char ch, unsigned char col)
