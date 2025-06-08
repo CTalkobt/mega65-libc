@@ -72,6 +72,7 @@ void getrtc(struct m65_tm* tm)
     case TARGET_EMULATION:
     case TARGET_MEGA65R2:
     case TARGET_MEGA65R3:
+        tm->tm_csec = 0;
         tm->tm_sec = unbcd(lpeek_debounced(0xffd7110));
         tm->tm_min = unbcd(lpeek_debounced(0xffd7111));
         tm->tm_hour = lpeek_debounced(0xffd7112);
@@ -96,6 +97,7 @@ void getrtc(struct m65_tm* tm)
     case TARGET_MEGA65R4:
     case TARGET_MEGA65R5:
     case TARGET_MEGA65R6:
+        tm->tm_csec = unbcd(lpeek_debounced(0xffd7117));
         tm->tm_sec = unbcd(lpeek_debounced(0xffd7110));
         tm->tm_min = unbcd(lpeek_debounced(0xffd7111));
         tm->tm_hour = unbcd(lpeek_debounced(0xffd7112) & 0x3f);

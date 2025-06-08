@@ -29,6 +29,7 @@ struct __attribute__((__packed__)) m65_tm {
 #else
 struct m65_tm {
 #endif
+    unsigned char tm_csec;  //!< Centiseconds (0-100) (only R4+)
     unsigned char tm_sec;   //!< Seconds (0-60)
     unsigned char tm_min;   //!< Minutes (0-59)
     unsigned char tm_hour;  //!< Hours (0-23)

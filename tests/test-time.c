@@ -9,6 +9,8 @@
  *
  * If a test fails, Xemu exits with a non-zero return code.
  */
+#include "mega65/hal.h"
+
 #include <mega65/memory.h>
 #include <mega65/time.h>
 #include <mega65/tests.h>
@@ -33,6 +35,12 @@ int main(void)
     assert_eq(tm.tm_sec < 61, 1);
     assert_eq(tm.tm_wday < 7, 1);
     assert_eq(tm.tm_yday < 366, 1);
+
+    if (tm.tm_csec == 0) {
+        usleep(10l);
+        getrtc(&tm);
+        assert_eq(tm.tm_csec != 0, 1);
+    }
 
     xemu_exit(EXIT_SUCCESS);
     return 0;
